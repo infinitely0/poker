@@ -32,10 +32,16 @@ instance Ord Rank where
 instance Show Rank where
     show (Number x) = show x
     show (Face   x) = show x
-    show Ace        = show "Ace"
+    show Ace        = id "Ace"
 
 data Suit = Hearts | Spades | Clubs | Diamonds
-    deriving (Eq, Show)
+    deriving (Eq)
+
+instance Show Suit where
+    show Hearts   = "♥"
+    show Spades   = "♠"
+    show Clubs    = "♣"
+    show Diamonds = "♦"
 
 instance Ord Suit where
     compare _ _ = EQ

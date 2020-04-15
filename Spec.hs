@@ -112,3 +112,7 @@ main = hspec $ do
       let p1Hand = readHand ["KC", "KS", "KC", "KH", "9S"]
       let p2Hand = readHand ["7D", "2S", "5D", "3S", "AC"]
       compareHands p1Hand p2Hand `shouldBe` True
+
+      let p1Hand = readHand ["2C", "2S", "2C", "9H", "9S"]
+      let p2Hand = readHand ["4D", "4S", "4H", "3S", "3C"]
+      compareHands p1Hand p2Hand `shouldBe` False

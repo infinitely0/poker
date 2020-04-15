@@ -1,12 +1,19 @@
 module Game where
 
+import System.IO.Unsafe
+
 import Card
 import Hand
 
-p1Hand = readHand ["8C", "8S", "8C", "8H", "2S"]
-p2Hand = readHand ["2D", "2S", "2C", "2H", "AC"]
+games = do
+    let file = readFile "./poker.txt"
+    let text = unsafePerformIO file
+    lines text
 
-game = print $ compareHands p1Hand p2Hand
+extractHands :: String -> (Hand, Hand)
+extractHands xs = (readHand (take 5 cs), readHand (drop 5 cs))
+    where cs = words xs
 
--- TODO
--- use assoc to `find` hands
+outcomes = map ((uncurry compareHands) . extractHands) games
+
+game = length $ filter (== True) outcomes
