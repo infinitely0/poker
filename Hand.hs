@@ -31,8 +31,8 @@ groupBySuit :: [Card] -> [[Card]]
 groupBySuit [] = []
 groupBySuit cs = do
     let (oc:ocs) = sortOn snd cs
-    let matches  = filter ((== snd oc) . snd) ocs
-    let rest     = filter (not . (`elem` matches)) ocs
+        matches  = filter ((== snd oc) . snd) ocs
+        rest     = filter (not . (`elem` matches)) ocs
     [oc : matches] ++ groupBySuit rest
 
 isConsecutive :: [Int] -> Bool
@@ -136,7 +136,7 @@ resolve :: [Card] -> [Card] -> Bool
 resolve [] [] = False
 resolve p1 p2 = do
     let p1Best = fst $ head p1
-    let p2Best = fst $ head p2
+        p2Best = fst $ head p2
     if p1Best == p2Best
        then resolve (tail p1) (tail p2)
        else p1Best > p2Best

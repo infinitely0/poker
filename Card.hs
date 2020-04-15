@@ -77,7 +77,7 @@ readCard :: String -> Card
 readCard s | length s /= 2 = invalidCard
            | otherwise     = do
                let rank = readRank (head s)
-               let suit = readSuit (head $ tail s)
+                   suit = readSuit (head $ tail s)
                if (rank /= Nothing && suit /= Nothing)
                   then card (case rank of Just x -> x)
                             (case suit of Just x -> x)
